@@ -1,0 +1,29 @@
+{
+  "name": "@notymail/action",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "bundle": "pnpm format && pnpm package",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "package": "ncc build src/index.js -o dist --source-map --license licenses.txt",
+    "package:watch": "pnpm package -- --watch"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "1.10.1",
+    "@actions/github": "6.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "0.38.1",
+    "prettier": "3.3.2",
+    "@commitlint/cli": "19.3.0",
+    "@commitlint/config-conventional": "19.2.2"
+  }
+}
