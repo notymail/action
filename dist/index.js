@@ -24942,17 +24942,22 @@ async function run() {
         'x-api-key': apiKey,
       };
     }
-    fetch(`${url}/send/email`, {
+
+    const payload = JSON.stringify({
+      to,
+      subject,
+      body,
+    });
+
+    console.log(`Payload: ${payload}`);
+
+    fetch(`${url}/api/email`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({
-        to,
-        subject,
-        body,
-      }),
+      body: payload,
     }).then((response) => {
       if (response.status >= 300) {
-        response.json().then((data) => core.setFailed(JSON.stringify(data)));
+        core.setFailed(`Request failed with: ${response.status}`);
       }
 
       core.setOutput('sent', true);
