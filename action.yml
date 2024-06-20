@@ -1,19 +1,31 @@
-name: Hello, World!
-description: Greet someone and record the time
-author: GitHub Actions
+name: 'notymail'
+author: 'Dafnik'
+description: 'Send emails easily from GitHub workflows.'
+branding:
+  icon: 'mail'
+  color: 'purple'
 
-# Define your inputs here.
 inputs:
-  who-to-greet:
-    description: Who to greet
+  url:
+    description: 'URL of notymail server'
     required: true
-    default: World
+  to:
+    description: 'E-Mail recipient address'
+    required: true
+  subject:
+    description: 'E-Mail subject'
+    required: true
+  body:
+    description: 'E-Mail body in Markdown'
+    required: false
+  apiKey:
+    description: 'API-Key for notymail server'
+    required: false
 
-# Define your outputs here.
 outputs:
-  time:
-    description: The time we greeted you
+  sent:
+    description: 'If the mail has been sent'
 
 runs:
-  using: node20
-  main: dist/index.js
+  using: 'node20'
+  main: 'dist/index.js'
